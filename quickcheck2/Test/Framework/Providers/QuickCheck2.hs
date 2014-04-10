@@ -11,6 +11,10 @@ import Test.Framework.Providers.API
 import Test.QuickCheck.Property (Testable, Callback(PostTest), CallbackKind(NotCounterexample), callback)
 import Test.QuickCheck.State (numSuccessTests)
 import Test.QuickCheck.Test
+#if MIN_VERSION_QuickCheck(2,7,0)
+import Test.QuickCheck.Random (QCGen, mkQCGen)
+#endif
+import System.Random
 
 import Data.Typeable
 
@@ -65,9 +69,24 @@ instance Testlike PropertyTestCount PropertyResult Property where
     runTest topts (Property testable) = runProperty topts testable
     testTypeName _ = "Properties"
 
+#if MIN_VERSION_QuickCheck(2,7,0)
+
+newSeededQCGen :: Seed -> IO (QCGen, Int)
+newSeededQCGen (FixedSeed seed) = return $ (mkQCGen seed, seed)
+newSeededQCGen RandomSeed = do
+  seed <- randomIO
+  return (mkQCGen seed, seed)
+
+#else
+
+newSeededQCGen :: Seed -> IO (StdGen, Int)
+newSeededQCGen = newSeededStdGen
+
+#endif
+
 runProperty :: Testable a => CompleteTestOptions -> a -> IO (PropertyTestCount :~> PropertyResult, IO ())
 runProperty topts testable = do
-    (gen, seed) <- newSeededStdGen (unK $ topt_seed topts)
+    (gen, seed) <- newSeededQCGen (unK $ topt_seed topts)
     let max_success = unK $ topt_maximum_generated_tests topts
         max_discard = unK $ topt_maximum_unsuitable_generated_tests topts
         args = stdArgs { replay = Just (gen, 0) -- NB: the 0 is the saved size. Defaults to 0 if you supply "Nothing" for "replay".
