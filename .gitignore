@@ -1,9 +1,2 @@
-# Operating system junk
-.DS_Store
-
-# Cabal temporary locations
-dist/
-
-# Build output
-*.hi
-*.o
+.cabal-sandbox
+cabal.sandbox.config
