@@ -4,7 +4,7 @@ module Test.Framework.Runners.Console.Table (
 
 import Test.Framework.Utilities
 
-import Text.PrettyPrint.ANSI.Leijen hiding (column)
+import Text.PrettyPrint.ANSI.Leijen hiding (column, columns)
 
 
 data Cell = TextCell Doc
