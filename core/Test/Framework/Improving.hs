@@ -6,6 +6,7 @@ module Test.Framework.Improving (
 
 import Control.Concurrent
 import Control.Monad
+import Control.Applicative
 
 import System.Timeout
 
@@ -34,6 +35,10 @@ newtype ImprovingIO i f a = IIO { unIIO :: Chan (Either i f) -> IO a }
 
 instance Functor (ImprovingIO i f) where
     fmap = liftM
+
+instance Applicative (ImprovingIO i f) where
+    pure  = return
+    (<*>) = ap
 
 instance Monad (ImprovingIO i f) where
     return x = IIO (const $ return x)

@@ -9,7 +9,11 @@ import Test.Framework.Runners.XML.JUnitWriter  ( RunDescription(..), serialize )
 import Data.Time.Format    ( formatTime )
 import Data.Time.LocalTime ( getZonedTime )
 
+#if MIN_VERSION_time(1,5,0)
+import Data.Time.Format    ( defaultTimeLocale )
+#else
 import System.Locale       ( defaultTimeLocale )
+#endif
 
 import Network.HostName    ( getHostName )
 
