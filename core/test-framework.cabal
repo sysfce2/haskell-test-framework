@@ -1,5 +1,5 @@
 Name:                test-framework
-Version:             0.8.0.3
+Version:             0.8.1.0
 Cabal-Version:       >= 1.6
 Category:            Testing
 Synopsis:            Framework for running and organising tests, with HUnit and QuickCheck support
