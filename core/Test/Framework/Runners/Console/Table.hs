@@ -1,11 +1,16 @@
+{-# LANGUAGE CPP #-}
+
 module Test.Framework.Runners.Console.Table (
         Cell(..), Column(..), renderTable
     ) where
 
 import Test.Framework.Utilities
 
+#if MIN_VERSION_ansi_wl_pprint(0,6,6)
 import Text.PrettyPrint.ANSI.Leijen hiding (column, columns)
-
+#else
+import Text.PrettyPrint.ANSI.Leijen hiding (column)
+#endif
 
 data Cell = TextCell Doc
           | SeperatorCell
