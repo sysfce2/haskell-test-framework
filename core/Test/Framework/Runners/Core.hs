@@ -16,7 +16,9 @@ import Control.Concurrent.MVar
 import Control.Exception (mask, finally, onException)
 import Control.Monad
 import Data.Maybe
+#if !MIN_VERSION_base(4,8,0)
 import Data.Monoid
+#endif
 import Data.Typeable
 
 
