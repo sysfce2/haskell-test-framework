@@ -43,6 +43,9 @@ data PropertyStatus = PropertyOK                        -- ^ The property is tru
                     | PropertyFalsifiable String String -- ^ The property was not true. The strings are the reason and the output.
                     | PropertyNoExpectedFailure         -- ^ We expected that a property would fail but it didn't
                     | PropertyTimedOut                  -- ^ The property timed out during execution
+#if MIN_VERSION_QuickCheck(2,8,0)
+                    | PropertyInsufficientCoverage      -- ^ The tests passed but a use of 'cover' had insufficient coverage.
+#endif
 
 instance Show PropertyResult where
     show (PropertyResult { pr_status = status, pr_used_seed = used_seed, pr_tests_run = mb_tests_run })
@@ -52,6 +55,9 @@ instance Show PropertyResult where
             PropertyFalsifiable _rsn otpt -> otpt ++ "(used seed " ++ show used_seed ++ ")"
             PropertyNoExpectedFailure     -> "No expected failure with seed " ++ show used_seed ++ ", after " ++ tests_run_str ++ " tests"
             PropertyTimedOut              -> "Timed out after " ++ tests_run_str ++ " tests"
+#if MIN_VERSION_QuickCheck(2,8,0)
+            PropertyInsufficientCoverage  -> "Insufficient coverage after " ++ tests_run_str ++ " tests"
+#endif
       where
         tests_run_str = fmap show mb_tests_run `orElse` "an unknown number of"
 
@@ -115,3 +121,6 @@ runProperty topts testable = do
     toPropertyStatus (GaveUp {})                               = PropertyArgumentsExhausted
     toPropertyStatus (Failure { reason = rsn, output = otpt }) = PropertyFalsifiable rsn otpt
     toPropertyStatus (NoExpectedFailure {})                    = PropertyNoExpectedFailure
+#if MIN_VERSION_QuickCheck(2,8,0)
+    toPropertyStatus (InsufficientCoverage _ _ _)              = PropertyInsufficientCoverage
+#endif
