@@ -6,7 +6,9 @@ module Test.Framework.Improving (
 
 import Control.Concurrent
 import Control.Monad
+#if !MIN_VERSION_base(4,8,0)
 import Control.Applicative
+#endif
 
 import System.Timeout
 

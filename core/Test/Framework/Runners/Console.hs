@@ -23,7 +23,9 @@ import System.Environment
 import System.Exit
 import System.IO
 
+#if !MIN_VERSION_base(4,8,0)
 import Data.Monoid
+#endif
 
 #if !MIN_VERSION_base(4,7,0)
 instance Functor OptDescr where

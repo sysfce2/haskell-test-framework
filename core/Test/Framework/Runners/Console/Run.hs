@@ -18,7 +18,9 @@ import System.IO
 
 import Text.PrettyPrint.ANSI.Leijen
 
+#if !MIN_VERSION_base(4,8,0)
 import Data.Monoid (mempty)
+#endif
 
 import Control.Arrow (second, (&&&))
 import Control.Monad (unless)
