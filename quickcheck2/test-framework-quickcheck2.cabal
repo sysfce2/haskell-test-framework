@@ -8,7 +8,7 @@ License-File:        LICENSE
 Author:              Max Bolingbroke <batterseapower@hotmail.com>
 Maintainer:          Haskell Libraries <libraries@haskell.org>
 Homepage:            https://batterseapower.github.io/test-framework/
-Bug-Reports:         https://github.com/haskell/test-framework/
+Bug-Reports:         https://github.com/haskell/test-framework/issues
 Build-Type:          Simple
 Description:         QuickCheck2 support for the test-framework package.
 
@@ -43,4 +43,5 @@ Library
 
 Source-Repository head
   Type:     git
-  Location: https://github.com/haskell/test-framework
+  Location: https://github.com/haskell/test-framework.git
+  subdir:   quickcheck2
