@@ -102,8 +102,8 @@ below, per the licensing conditions of pqc.
 >           }
 >       
 >       defaultMainWithOpts tests my_runner_opts
->       
->       tests = [
+>
+>   tests = [
 >                 testGroup "Sorting Group 1" [
 >                         testProperty "sort1" prop_sort1
 >                       , testProperty "sort2" prop_sort2
@@ -121,7 +121,7 @@ below, per the licensing conditions of pqc.
 >                   ]
 >           ]
 >       
->       
+>     where  
 >       prop_sort1 xs = sort xs == sortBy compare xs
 >           where types = (xs :: [Int])
 >       
