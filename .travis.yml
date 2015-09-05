@@ -103,4 +103,11 @@ script:
  - SRC_TGZ=$(cabal info . | awk '{print $2;exit}').tar.gz && (cd dist && cabal install --force-reinstalls "$SRC_TGZ")
  - cd ..
  
+# make sure the example code still works
+ - cd example/
+ - cabal configure
+ - cabal build
+ - dist/build/test-framework-example/test-framework-example || true
+ - cd ..
+
 # EOF
