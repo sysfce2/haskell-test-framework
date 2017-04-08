@@ -76,7 +76,10 @@ Library
                                 TypeOperators
                                 FunctionalDependencies
                                 MultiParamTypeClasses
-                                NondecreasingIndentation
+
+        -- workaround https://github.com/haskell/cabal/issues/4443
+        if impl(ghc >= 7.2)
+                Default-Extensions: NondecreasingIndentation
 
         Ghc-Options:            -Wall
 
