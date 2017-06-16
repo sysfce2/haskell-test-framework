@@ -16,15 +16,16 @@ extra-source-files:  ChangeLog.md
 
 Library
         Default-Language:       Haskell2010
-        Other-Extensions:       TypeSynonymInstances
-                                TypeOperators
-                                MultiParamTypeClasses
+        Other-Extensions:       CPP
+                                DeriveDataTypeable
                                 ExistentialQuantification
+                                MultiParamTypeClasses
+                                TypeOperators
+                                TypeSynonymInstances
 
         Exposed-Modules:        Test.Framework.Providers.QuickCheck2
 
         Build-Depends:          test-framework        == 0.8.*
-
                               , QuickCheck            >= 2.4    && < 2.11
                               , base                  >= 4.3    && < 5
                               , extensible-exceptions >= 0.1.1  && < 0.2.0
