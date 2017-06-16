@@ -1,7 +1,13 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE ExistentialQuantification #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE TypeSynonymInstances #-}
+
 -- | Allows QuickCheck2 properties to be used with the test-framework package.
 --
--- For an example of how to use test-framework, please see <http://github.com/batterseapower/test-framework/raw/master/example/Test/Framework/Example.lhs>
+-- For an example of how to use @test-framework@, please see <https://github.com/haskell/test-framework/raw/master/example/Test/Framework/Example.lhs>.
 module Test.Framework.Providers.QuickCheck2 (
         testProperty
     ) where
