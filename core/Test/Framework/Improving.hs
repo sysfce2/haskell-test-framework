@@ -6,9 +6,7 @@ module Test.Framework.Improving (
 
 import Control.Concurrent
 import Control.Monad
-#if !MIN_VERSION_base(4,8,0)
-import Control.Applicative
-#endif
+import Control.Applicative as App
 
 import System.Timeout
 
@@ -39,11 +37,11 @@ instance Functor (ImprovingIO i f) where
     fmap = liftM
 
 instance Applicative (ImprovingIO i f) where
-    pure  = return
+    pure x = IIO (const $ return x)
     (<*>) = ap
 
 instance Monad (ImprovingIO i f) where
-    return x = IIO (const $ return x)
+    return = App.pure
     ma >>= f = IIO $ \chan -> do
                     a <- unIIO ma chan
                     unIIO (f a) chan
