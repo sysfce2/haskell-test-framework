@@ -1,5 +1,5 @@
 Name:                test-framework
-Version:             0.8.2
+Version:             0.8.2.0
 Cabal-Version:       >= 1.10
 Category:            Testing
 Synopsis:            Framework for running and organising tests, with HUnit and QuickCheck support
@@ -14,6 +14,8 @@ Homepage:            http://haskell.github.io/test-framework/
 Bug-Reports:         https://github.com/haskell/test-framework/issues
 Build-Type:          Simple
 Tested-With:         GHC==8.2.2, GHC==8.0.2, GHC==7.10.3, GHC==7.8.4, GHC==7.6.3, GHC==7.4.2, GHC==7.2.2, GHC==7.0.4
+
+Extra-Source-Files: ChangeLog.md
 
 Library
         Exposed-Modules:        Test.Framework
