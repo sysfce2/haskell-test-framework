@@ -128,6 +128,9 @@ install:
     echo 'packages: "./example"' >> cabal.project
   - |
     echo "write-ghc-environment-files: always" >> cabal.project
+  # On Debian/Ubuntu you may need the following to workaround an issue in libxml's packaging
+  - "echo 'package libxml' >> cabal.project"
+  - "echo '  extra-include-dirs: /usr/include/libxml2' >> cabal.project"
   - "for pkg in $($HCPKG list --simple-output); do echo $pkg | sed 's/-[^-]*$//' | (grep -vE -- '^(test-framework|test-framework-example|test-framework-hunit|test-framework-quickcheck2)$' || true) | sed 's/^/constraints: /' | sed 's/$/ installed/' >> cabal.project.local; done"
   - cat cabal.project || true
   - cat cabal.project.local || true
@@ -158,6 +161,9 @@ script:
     echo 'packages: "test-framework-example-*/*.cabal"' >> cabal.project
   - |
     echo "write-ghc-environment-files: always" >> cabal.project
+  # On Debian/Ubuntu you may need the following to workaround an issue in libxml's packaging
+  - "echo 'package libxml' >> cabal.project"
+  - "echo '  extra-include-dirs: /usr/include/libxml2' >> cabal.project"
   - "for pkg in $($HCPKG list --simple-output); do echo $pkg | sed 's/-[^-]*$//' | (grep -vE -- '^(test-framework|test-framework-example|test-framework-hunit|test-framework-quickcheck2)$' || true) | sed 's/^/constraints: /' | sed 's/$/ installed/' >> cabal.project.local; done"
   - cat cabal.project || true
   - cat cabal.project.local || true
