@@ -60,7 +60,7 @@ Library
                 Build-Depends:  base-orphans   >= 0.1    && < 0.9
 
         if !impl(ghc >= 8.0)
-                Build-Depends:  semigroups     >= 0.18   && < 0.19
+                Build-Depends:  semigroups     >= 0.18   && < 0.20
 
         Default-Language:       Haskell2010
         Default-Extensions:     CPP
@@ -104,7 +104,7 @@ Test-Suite test-framework-tests
 
         -- Buildable:              False
         Build-Depends:          HUnit          >= 1.2
-                              , QuickCheck     >= 2.3 && < 2.13
+                              , QuickCheck     >= 2.3 && < 2.14
                               , base           >= 4.3
                               , random         >= 1.0
                               , containers     >= 0.1
